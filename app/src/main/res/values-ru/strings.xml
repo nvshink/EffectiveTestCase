@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EffectiveTestCase</string>
+    <string name="onboarding_title">Тысячи курсов  в одном месте</string>
+    <string name="onboarding_1c_administration">1С Администратор</string>
+    <string name="onboarding_traffic">Трафик</string>
+    <string name="onboarding_content_making">Контент мекинг</string>
+    <string name="onboarding_b2b_marketing">B2B маркейтинг</string>
+    <string name="onboarding_google_analytics">Google Аналитика</string>
+    <string name="onboarding_game_design">Геймдизайн</string>
+    <string name="onboarding_ux_researcher">UX исследователь</string>
+    <string name="onboarding_web_analytics">Веб-аналитика</string>
+    <string name="onboarding_web_design">Веб-дизайн</string>
+    <string name="onboarding_promt_engineering">Промпт инженеринг</string>
+    <string name="onboarding_parsing">Парсинг</string>
+    <string name="onboarding_python_develop">Python-разработка</string>
+    <string name="log_in_screen_title">Войти</string>
+    <string name="button_continue_name">Продожить</string>
+    <string name="label_password">Пароль</string>
+    <string name="password_placeholder">Ввелите пароль</string>
+    <string name="button_log_in_name">Войти</string>
+    <string name="button_log_out_name">Выйти</string>
+    <string name="log_in_screen_no_profile_question">Нет аккаунта?</string>
+    <string name="text_button_registration_name">Регистрация</string>
+    <string name="text_button_forgot_password_name">Забыл пароль</string>
+    <string name="vk_logo_description">Логотив вк</string>
+    <string name="ok_logo_description">Логотов одноклассников</string>
+    <string name="search_bar_placeholder">Поиск курсов</string>
+    <string name="destination_home_name">Главная</string>
+    <string name="destination_favorites_name">Избранное</string>
+    <string name="destination_profile_name">Аккаунт</string>
+    <string name="search_icon_description">Поиск</string>
+    <string name="funnel_icon_description">Фильтр</string>
+    <string name="bookmark_icon_description">Избранное</string>
+    <string name="star_icon_description">Рейтинг</string>
+    <string name="arrow_up_down_icon_description">Сортировка</string>
+    <string name="arrow_right_icon_description">Подробнее</string>
+    <string name="sort_type_name">По дате добавления</string>
+    <string name="details_name">Подробнее</string>
+    <string name="profile_screen_hello">"Здравствуйте, "</string>
+</resources>

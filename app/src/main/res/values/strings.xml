@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">EffectiveTestCase</string>
+    <string name="onboarding_title">Thousands of courses in one place</string>
+    <string name="onboarding_1c_administration">1C Administration</string>
+    <string name="onboarding_rabbit_mq" translatable="false">RabbitMQ</string>
+    <string name="onboarding_traffic">Traffic</string>
+    <string name="onboarding_content_making">Content making</string>
+    <string name="onboarding_b2b_marketing">B2B marketing</string>
+    <string name="onboarding_google_analytics">Google Analytics</string>
+    <string name="onboarding_ux_researcher">UX Researcher</string>
+    <string name="onboarding_web_analytics">Web analytics</string>
+    <string name="onboarding_big_data" translatable="false">Big Data</string>
+    <string name="onboarding_game_design">Game design</string>
+    <string name="onboarding_web_design">Web design</string>
+    <string name="onboarding_cinema_4d" translatable="false">Cinema 4D</string>
+    <string name="onboarding_promt_engineering">Promt engineering</string>
+    <string name="onboarding_webflow" translatable="false">Webflow</string>
+    <string name="onboarding_three_js" translatable="false">Three.js</string>
+    <string name="onboarding_parsing">Parsing</string>
+    <string name="onboarding_python_develop">Python develop</string>
+    <string name="log_in_screen_title">Log In</string>
+    <string name="button_continue_name">Continue</string>
+    <string name="label_email" translatable="false">Email</string>
+    <string name="label_password">Password</string>
+    <string name="email_placeholder" translatable="false">example@gmail.com</string>
+    <string name="password_placeholder">Type password</string>
+    <string name="button_log_in_name">Log In</string>
+    <string name="button_log_out_name">Log Out</string>
+    <string name="log_in_screen_no_profile_question">No profile?</string>
+    <string name="text_button_registration_name">Registration</string>
+    <string name="text_button_forgot_password_name">Forgot password</string>
+    <string name="vk_logo_description">VK logo</string>
+    <string name="ok_logo_description">Odnoklassniki logo</string>
+    <string name="search_bar_placeholder">Search courses…</string>
+    <string name="destination_home_name">Home</string>
+    <string name="destination_favorites_name">Favorites</string>
+    <string name="destination_profile_name">Profile</string>
+    <string name="search_icon_description">Search</string>
+    <string name="funnel_icon_description">Filter</string>
+    <string name="bookmark_icon_description">Favorites</string>
+    <string name="star_icon_description">Rating</string>
+    <string name="arrow_up_down_icon_description">Sort</string>
+    <string name="arrow_right_icon_description">Details</string>
+    <string name="sort_type_name">By publishing date</string>
+    <string name="details_name">Details</string>
+    <string name="profile_screen_hello">Hello, </string>
+</resources>

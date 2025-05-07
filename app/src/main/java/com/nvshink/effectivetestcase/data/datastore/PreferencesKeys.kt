@@ -7,18 +7,18 @@ import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.map
 
 object PreferencesKeys {
-    val ONBOARDING_SHOWN = booleanPreferencesKey("onboarding_shown")
+    val ONBOARDING_IS_SHOW = booleanPreferencesKey("onboarding_is_show")
     val AUTHORIZED = booleanPreferencesKey("authorized")
 }
 
 class AppPreferences(private val dataStore: DataStore<Preferences>) {
-    val onboardingShown = dataStore.data
+    val onboardingIsShow = dataStore.data
         .map { preferences ->
-            preferences[PreferencesKeys.ONBOARDING_SHOWN] ?: false
+            preferences[PreferencesKeys.ONBOARDING_IS_SHOW] ?: true
         }
-    suspend fun setOnboardingShown(shown: Boolean) {
+    suspend fun setOnboardingIsShow(isShow: Boolean) {
         dataStore.edit { preferences ->
-            preferences[PreferencesKeys.ONBOARDING_SHOWN] = shown
+            preferences[PreferencesKeys.ONBOARDING_IS_SHOW] = isShow
         }
     }
 

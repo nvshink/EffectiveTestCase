@@ -29,9 +29,9 @@ loggingInterceptor = "5.0.0-alpha.14"
 hazeJetpackCompose = "0.7.0"
 haze = "0.30.0"
 cloudy = "0.2.6"
-hazeVersion = "1.5.3"
-datastorePreferences = "1.0.0"
-datastorePreferencesCore = "1.0.0"
+hazeVersion = "1.5.4"
+datastorePreferences = "1.1.2"
+datastorePreferencesCore = "1.1.2"
 lifecycleRuntimeCompose = "2.8.7"
 hiltAndroidCompiler = "2.56.2"
 moshiKotlinCodegen = "1.15.2"
@@ -39,6 +39,10 @@ converterMoshi = "2.11.0"
 moshiKotlin = "1.15.2"
 moshiAdapters = "1.15.2"
 moshi = "1.15.2"
+coreSplashscreen = "1.0.1"
+hazeMaterials = "1.5.3"
+hazeAndroid = "1.5.3"
+coreKtxVersion = "3.0.0"
 
 
 
@@ -86,6 +90,10 @@ converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", 
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshiKotlin" }
 moshi-adapters = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshiAdapters" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+haze-materials = { group = "dev.chrisbanes.haze", name = "haze-materials", version.ref = "hazeMaterials" }
+haze-android = { group = "dev.chrisbanes.haze", name = "haze-android", version.ref = "hazeAndroid" }
+core-ktx = { group = "com.github.prime-zs.toolkit", name = "core-ktx", version.ref = "coreKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

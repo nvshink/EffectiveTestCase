@@ -13,6 +13,9 @@ import com.nvshink.effectivetestcase.ui.event.CourseEvent
 import com.nvshink.effectivetestcase.ui.screen.home.CourseCard
 import com.nvshink.effectivetestcase.ui.states.CourseUIState
 
+/**
+ * Screen of favorites courses
+ */
 @Composable
 fun FavoritesScreen(
     innerPadding: PaddingValues,

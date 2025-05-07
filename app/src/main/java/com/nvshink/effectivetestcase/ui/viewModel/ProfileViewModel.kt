@@ -30,19 +30,14 @@ class ProfileViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(ProfileUIState())
 
-    private val _authorized: StateFlow<Boolean> = appPreferences.authorized
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = false
-        )
+    private val _authorized = appPreferences.authorized
 
     val uiState = combine(_uiState, _profile, _authorized) { uiState, profile, authorized ->
         uiState.copy(
             profile = profile,
             isAuthorized = authorized
         )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ProfileUIState())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), ProfileUIState())
 
     fun onEvent(event: ProfileEvent) {
         when (event) {
@@ -72,7 +67,9 @@ class ProfileViewModel @Inject constructor(
                         appPreferences.setAuthorized(false)
                     }
                     it.copy(
-                        isAuthorized = false
+                        isAuthorized = false,
+                        email = "",
+                        password = ""
                     )
                 }
             }

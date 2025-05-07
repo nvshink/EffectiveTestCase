@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,35 +31,89 @@ class CourseViewModel @Inject constructor(
 ) : ViewModel() {
     private val _sortType = MutableStateFlow(SortTypes.PUBLISH_DATE_ASC)
     private val _favoriteCourses = favoriteCourseRepository.getFavoriteCoursesById()
-    private val _uiState = MutableStateFlow(CourseUIState())
-    private val _courses = _sortType
+    private val _uiState = MutableStateFlow(_sortType
         .flatMapLatest { sortType ->
-            try {
-                val a: Flow<List<Course>>
-                when (sortType) {
-                    SortTypes.PUBLISH_DATE_ASC -> {
-                         courseRepository.getCoursesByPublishDateASC()
+            flow {
+                emit(CourseUIState.Loading())
+                try {
+                    val result: Flow<List<Course>> = when (sortType) {
+                        SortTypes.PUBLISH_DATE_ASC -> {
+                            courseRepository.getCoursesByPublishDateASC()
+                        }
+
+                        SortTypes.PUBLISH_DATE_DSC -> {
+                            courseRepository.getCoursesByPublishDateDSC()
+                        }
                     }
-                    SortTypes.PUBLISH_DATE_DSC -> {
-                        courseRepository.getCoursesByPublishDateDSC()
-                    }
+                    emit(
+                        CourseUIState.Success(
+                            result.first(),
+                            currentCourse = null,
+                            sortType = sortType
+                        )
+                    )
+                } catch (e: Error) {
+                    Log.e("GET_COURSES", e.message ?: "Error get courses from source")
+                    emit(
+                        CourseUIState.Error(
+                            message = e.message.toString(),
+                            currentCourse = null,
+                            sortType = sortType
+                        )
+                    )
                 }
-            } catch (e: Error) {
-                Log.e("GET_COURSES", e.message ?: "Error get courses from source")
-                return@flatMapLatest emptyFlow()
             }
         }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            CourseUIState.Loading()
+        ))
 
-    val uiState = combine(_uiState, _sortType, _courses, _favoriteCourses) { uiState, sortType, courses, favoriteCourses ->
-        uiState.copy(
-            coursesList = courses.map {
-                if (favoriteCourses.contains(FavoriteCourse(it.id))) it.copy(hasLike = true) else it
-            },
-            sortType = sortType,
-            isLoading = false
-        )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), CourseUIState())
+    val uiState =
+        combine(
+            _uiState.value, _sortType, _favoriteCourses) { uiState, sortType, favoriteCourses ->
+            Log.d(
+                "SUS",
+                "Start combine " + uiState.coursesList.size.toString() + " state " + uiState::class.toString()
+            )
+            when (uiState) {
+                is CourseUIState.Loading -> {
+                    Log.d("SUS", "Loading " + uiState::class.toString())
+                    return@combine uiState.copy(
+                        coursesList = uiState.coursesList,
+                        sortType = sortType,
+                        currentCourse = uiState.currentCourse
+                    )
+                }
+
+                is CourseUIState.Success -> {
+                    Log.d("SUS", "Success " + uiState::class.toString())
+                    return@combine uiState.copy(
+                        coursesList = uiState.coursesList.map {
+                            if (favoriteCourses.contains(
+                                    FavoriteCourse(
+                                        it.id
+                                    )
+                                )
+                            ) it.copy(hasLike = true) else it
+                        },
+                        sortType = sortType,
+                        currentCourse = uiState.currentCourse
+                    )
+                }
+
+                is CourseUIState.Error -> {
+                    Log.d("SUS", "Error " + uiState::class.toString())
+                    return@combine uiState.copy(
+                        coursesList = uiState.coursesList,
+                        sortType = sortType,
+                        currentCourse = uiState.currentCourse
+                    )
+                }
+            }
+
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), CourseUIState.Loading())
 
     fun onEvent(event: CourseEvent) {
         when (event) {
@@ -78,11 +132,11 @@ class CourseViewModel @Inject constructor(
             }
 
             is CourseEvent.UpdateCurrentCourse -> {
-                _uiState.update {
-                    it.copy(
-                        currentCourse = event.course
-                    )
-                }
+//                _uiState. update {
+//                    it.copy(
+//                        currentCourse = event.course
+//                    )
+//                }
             }
 
             is CourseEvent.SetSortType -> {

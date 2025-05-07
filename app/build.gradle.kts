@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.moshi.adapters)
     implementation(libs.moshi)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.dev.haze)
     ksp(libs.hilt.compiler)
     //DataStore
     implementation(libs.androidx.datastore.preferences)

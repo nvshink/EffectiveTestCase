@@ -1,8 +1,7 @@
 package com.nvshink.effectivetestcase.ui.screen.home
 
-import android.provider.CalendarContract.Colors
+
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,7 +30,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,7 +39,6 @@ import com.nvshink.effectivetestcase.R
 import com.nvshink.effectivetestcase.data.model.Course
 import com.nvshink.effectivetestcase.ui.event.CourseEvent
 import com.nvshink.effectivetestcase.ui.states.CourseUIState
-import com.nvshink.effectivetestcase.ui.theme.Green
 import com.nvshink.effectivetestcase.ui.utils.SortTypes
 import java.time.format.DateTimeFormatter
 
@@ -128,7 +125,7 @@ fun HomeScreen(
                 }
             }
         }
-        if (courseUIState.isLoading) { //TODO(Fix ui state update loading val)
+        if (courseUIState is CourseUIState.Loading) {
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
                 CircularProgressIndicator()
             }
